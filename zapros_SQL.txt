@@ -2,10 +2,11 @@
 Представь: тебе нужно проверить, отображается ли созданный заказ в базе данных.
 Для этого: выведи список логинов курьеров с количеством их заказов в статусе «В доставке» (поле inDelivery = true).
 
-SELECT c.login, COUNT(*) AS orders_count
+SELECT c.login,
+       COUNT(*) AS orders_count
 FROM "Couriers" c
 JOIN "Orders" o ON c.id = o."courierId"
-WHERE o."inDelivery" = true
+WHERE o."inDelivery" = TRUE
 GROUP BY c.login;
 
 Задание 2
@@ -18,10 +19,10 @@ GROUP BY c.login;
 Для остальных случаев вывести 0.
 
 SELECT track,
-CASE
-WHEN "finished" = true THEN 2
-WHEN "cancelled" = true THEN -1
-WHEN "inDelivery" = true THEN 1
-ELSE 0
-END AS status
+       CASE
+           WHEN "finished" = TRUE THEN 2
+           WHEN "cancelled" = TRUE THEN -1
+           WHEN "inDelivery" = TRUE THEN 1
+           ELSE 0
+       END AS status
 FROM "Orders"
